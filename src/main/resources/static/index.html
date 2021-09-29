@@ -23,15 +23,21 @@ table, th, td {
 	<div>
 	<b>Author</b>
 	<input type="text" id = "author">
-	<button onclick="app.getNameAuthorBlueprints()">Get blueprints</button>
+	<button onclick="app.getNameAuthorBlueprints();">Get blueprints</button>
 	</div>
-	<h3>Author blueprints: </h3>
+	<h3 id="author_name_table">Author Blueprints: </h3>
 	<table style="width:50%" id="table">
+		<thead>
 		<tr>
 			<th>Blueprint name</th>
 			<th>Number of points</th>
 			<th>Open</th>
 		</tr>
+		</thead>
+
+		<tbody id="Table_Content">
+
+		</tbody>
 	</table>
 	<br>
 	<br>

@@ -1,6 +1,7 @@
-var app = (function(){
-	var author;
-	var blueprintname;
+var app = function(){
+    let author;
+    let blueprintName;
+
 
 	function getNameAuthor (){
 		$("#author").text(author)
@@ -9,7 +10,7 @@ var app = (function(){
 	function getBluePrintName() {
         $("#blueprint").text(blueprintName);
 	}
-	
+
 	function getNameAuthorBlueprints() {
         author = $("#author").val();
         if (author === "") {
@@ -20,14 +21,10 @@ var app = (function(){
             });
         }
 	}
-	
+
 	function upgradeData(data){
-		if (data === undefined) {
-            alert("No existe el autor");
-            $("#author").empty();
-            $("#points").empty();
-        } else {
-            getName();
+        if (data !== undefined) {
+            getNameAuthor();
             const datanew = data.map((element) => {
                 return {
                     name: element.name,
@@ -36,15 +33,19 @@ var app = (function(){
             });
 
             datanew.map((elements) => {
-                $("#table > tbody:last").append($("<tr><td>" + elements.name + "</td><td>" + elements.puntos.toString() +
+                $("#table > tbody:last").append($("<tr><td>" + elements.name + "</td><td>" + elements.points.toString() +
                     "</td><td>" + "<button  id=" + elements.name + " onclick=app.getBlueprintByAuthorAndName(this)>open</button>" + "</td>"));
             });
 
             const total = datanew.reduce((sum, {puntos}) => sum + puntos, 0);
 
             $("#points").text(total);
+        } else {
+            alert("No existe el autor");
+            $("#author").empty();
+            $("#points").empty();
         }
-	}
+    }
 
 	function getBlueprintByAuthorAndName(data) {
         author = $("#author").val();
@@ -53,7 +54,7 @@ var app = (function(){
             paintData(resp);
         });
 	}
-	
+
 	function paintData(data) {
         getBluePrintName();
         const puntos = data.points;
@@ -73,9 +74,7 @@ var app = (function(){
         ctx.stroke();
     }
     return{
-        getBlueprintByAuthorAndNam,
-        getNameAuthorBlueprints,
-        getNameAuthor,
-        getBluePrintName
+        getNameAuthorBlueprints
+
     }
-})
+}
