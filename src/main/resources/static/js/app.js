@@ -57,7 +57,7 @@ var app = (function(){
 	function paintData(data) {
         getBluePrintName();
         const puntos = data.points;
-        var c = document.getElementById("myCanvas");
+        var c = document.getElementById("canvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, c.width, c.height);
         ctx.restore();
@@ -71,5 +71,11 @@ var app = (function(){
             }
         }
         ctx.stroke();
+    }
+    return{
+        getBlueprintByAuthorAndNam,
+        getNameAuthorBlueprints,
+        getNameAuthor,
+        getBluePrintName
     }
 })
